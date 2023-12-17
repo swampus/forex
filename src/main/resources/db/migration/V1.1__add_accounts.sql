@@ -1,0 +1,31 @@
+INSERT INTO account (user_identifier, account_number, currency, balance, status, date_balance_update)
+VALUES
+    -- User 1 (1 account)
+    ('36c57d1a-d10b-4cbf-8352-eb99c2d5159d', 'EUR123456789', 'EUR', 1500.00, 'ACTIVE', CURRENT_TIMESTAMP),
+
+    -- User 2 (2 accounts)
+    ('cffd77d3-ae02-4e36-9363-7d11c1c6fc89', 'EUR234567890', 'EUR', 2000.00, 'ACTIVE', CURRENT_TIMESTAMP),
+    ('cffd77d3-ae02-4e36-9363-7d11c1c6fc89', 'USD234567890', 'USD', 2200.00, 'ACTIVE', CURRENT_TIMESTAMP),
+
+    -- User 3 (1 account)
+    ('a6363de7-ae9c-4ee7-8b7f-3ec16b619d8d', 'NOK345678901', 'NOK', 2000.00, 'ACTIVE', CURRENT_TIMESTAMP),
+
+    -- User 4 (4 accounts)
+    ('3d3aa881-69ea-4ac8-9a29-53ce96b3c17b', 'EUR456789012', 'EUR', 2500.00, 'ACTIVE', CURRENT_TIMESTAMP),
+    ('3d3aa881-69ea-4ac8-9a29-53ce96b3c17b', 'USD456789012', 'USD', 2300.00, 'ACTIVE', CURRENT_TIMESTAMP),
+    ('3d3aa881-69ea-4ac8-9a29-53ce96b3c17b', 'NOK456789012', 'NOK', 1900.00, 'ACTIVE', CURRENT_TIMESTAMP),
+    ('3d3aa881-69ea-4ac8-9a29-53ce96b3c17b', 'IRR456789012', 'IRR', 1000.00, 'ACTIVE', CURRENT_TIMESTAMP),
+
+    -- User 5 (1 account)
+    ('0d33fe56-86c1-419f-8e7f-b8ba18c1923e', 'NOK567890123', 'NOK', 2100.00, 'ACTIVE', CURRENT_TIMESTAMP),
+
+    -- User 6 (6 accounts)
+    ('5df41829-56c8-465d-a4bb-8bcf2dbaf4eb', 'EUR678901234', 'EUR', 1200.00, 'ACTIVE', CURRENT_TIMESTAMP),
+    ('5df41829-56c8-465d-a4bb-8bcf2dbaf4eb', 'USD678901234', 'USD', 1100.00, 'ACTIVE', CURRENT_TIMESTAMP),
+    ('5df41829-56c8-465d-a4bb-8bcf2dbaf4eb', 'NOK678901234', 'NOK', 800.00, 'ACTIVE', CURRENT_TIMESTAMP),
+    ('5df41829-56c8-465d-a4bb-8bcf2dbaf4eb', 'IRR678901234', 'IRR', 500.00, 'ACTIVE', CURRENT_TIMESTAMP),
+    ('5df41829-56c8-465d-a4bb-8bcf2dbaf4eb', 'EUR678901235', 'EUR', 1500.00, 'DISABLED', CURRENT_TIMESTAMP),
+    ('5df41829-56c8-465d-a4bb-8bcf2dbaf4eb', 'USD678901235', 'USD', 1300.00, 'ACTIVE', CURRENT_TIMESTAMP),
+
+    -- User 7 (1 account)
+    ('2ec7fd6f-735d-4e6e-9013-2f188d31ed70', 'USD789012345', 'USD', 800.00, 'ACTIVE', CURRENT_TIMESTAMP);

@@ -1,14 +1,12 @@
 package com.forex.homework.service;
 
 import com.forex.homework.eenum.TransactionStatus;
-import com.forex.homework.model.Account;
 import com.forex.homework.model.Transaction;
 import com.forex.homework.repository.AccountRepository;
 import com.forex.homework.repository.TransactionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 @Component
@@ -25,8 +23,8 @@ public class TransactionProcessor {
         for (Transaction transaction : transactions) {
             try {
                 // Update account balances
-                Account account = transaction.getAccount();
-                BigDecimal newBalance = account.getBalance().add(transaction.getAmount());
+                var account = transaction.getAccount();
+                var newBalance = account.getBalance().add(transaction.getAmount());
                 account.setBalance(newBalance);
 
                 // Update transaction status

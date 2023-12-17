@@ -33,7 +33,7 @@ public class CurrencyGateway {
 
     public ExchangeRateDTO getExchangeRates(String currency) {
         try {
-            ExchangeRateDTO rate = restTemplate.getForObject(createCallUrl(currency), ExchangeRateDTO.class);
+            var rate = restTemplate.getForObject(createCallUrl(currency), ExchangeRateDTO.class);
             fallBackCache.put(currency, rate);
             return rate;
         } catch (RestClientException e) {

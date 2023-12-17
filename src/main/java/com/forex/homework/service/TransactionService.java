@@ -13,7 +13,6 @@ import com.forex.homework.service.utils.DatetimeProvider;
 import com.forex.homework.service.utils.UUIDprovider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;
 
@@ -42,17 +41,17 @@ public class TransactionService {
     private TransactionProcessor transactionProcessor;
 
     public List<Transaction> getTransactionHistory(String accountNumber, int offset, int limit) {
-        Pageable pageable = PageRequest.of(offset, limit, Sort.by(Sort.Order.desc("transactionDate")));
+        var pageable = PageRequest.of(offset, limit, Sort.by(Sort.Order.desc("transactionDate")));
         return transactionRepository.findByAccountAccountNumberOrderByTransactionDateDesc(accountNumber, pageable);
     }
 
 
     public void transferFunds(String sourceAccountNumber, String targetAccountNumber, BigDecimal amount, String currency) {
 
-        Account sourceAccount = accountService.getAccountByAccountNumber(sourceAccountNumber)
+        var sourceAccount = accountService.getAccountByAccountNumber(sourceAccountNumber)
                 .orElseThrow(() -> new AccountNotFoundException("Source account not found: " + sourceAccountNumber));
 
-        Account targetAccount = accountService.getAccountByAccountNumber(targetAccountNumber)
+        var targetAccount = accountService.getAccountByAccountNumber(targetAccountNumber)
                 .orElseThrow(() -> new AccountNotFoundException("Target account not found: " + targetAccountNumber));
 
         if (!targetAccount.getCurrency().equals(currency)) {
@@ -70,7 +69,7 @@ public class TransactionService {
                 throw new InsufficientBalanceException("Insufficient balance in the source account: " + sourceAccountNumber);
             }
 
-            UUID trnBlock = uuiDprovider.getUUUID();
+            var trnBlock = uuiDprovider.getUUUID();
 
             var sourceTransaction = createCurrencyTransaction(sourceAccount, amount.negate(), exchangeRate, trnBlock);
             var targetTransaction = createCurrencyTransaction(targetAccount, amount, exchangeRate, trnBlock);
@@ -78,7 +77,7 @@ public class TransactionService {
             extractAndProcessTransactions(sourceTransaction, targetTransaction);
         } else {
             // Currencies are the same, proceed with a regular transaction
-            UUID trnBlock = uuiDprovider.getUUUID();
+            var trnBlock = uuiDprovider.getUUUID();
             var sourceTransaction = createCurrencyTransaction(sourceAccount, amount.negate(), BigDecimal.ONE, trnBlock);
             var targetTransaction = createCurrencyTransaction(targetAccount, amount, BigDecimal.ONE, trnBlock);
             extractAndProcessTransactions(sourceTransaction, targetTransaction);
@@ -95,7 +94,7 @@ public class TransactionService {
 
     private Transaction createCurrencyTransaction(Account account, BigDecimal amount,
                                                   BigDecimal exchangeRate, UUID blockIdentifier) {
-        Transaction transaction = new Transaction();
+        var transaction = new Transaction();
         transaction.setAccount(account);
         transaction.setAmount(amount);
         transaction.setBlockIdentifier(blockIdentifier);
